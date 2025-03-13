@@ -1,0 +1,921 @@
+/* Define the custom fonts */
+@font-face {
+  font-family: "BlackMild";
+  src: url("/BlackMildRegular-PK2ex.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "DenibasSunset";
+  src: url("/Denibas sunset.otf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --primary: #460000; /* Maroon */
+  --secondary: #d9b70e; /* Yellow */
+  --accent: #ff6b6b;
+  --text: #d9b70e; /* Yellow */
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "BlackMild", "DenibasSunset", cursive;
+  color: var(--text);
+}
+
+body {
+  background: var(--primary);
+  overflow-x: hidden;
+}
+
+/* Navigation */
+.main-nav {
+  background: rgba(70, 0, 0, 0.9);
+}
+
+/* Button and interactive elements */
+button,
+.download-btn,
+.skip-btn {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+button:hover,
+.download-btn:hover,
+.skip-btn:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+/* Loader */
+.loader {
+  background: var(--primary);
+}
+
+/* Registration Form */
+.registration-form input,
+.registration-form textarea {
+  border: 2px solid var(--secondary);
+  background: rgba(212, 56, 56, 0.1);
+}
+
+.registration-form button {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+/* Footer */
+.footer {
+  background: #111;
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+/* Modal */
+.modal-content {
+  background: #1a1a1a;
+  border: 2px solid var(--secondary);
+}
+
+.close-modal:hover {
+  color: var(--accent);
+}
+
+/* Download Button */
+.download-btn:hover {
+  background: var(--accent);
+}
+
+body {
+  background: var(--primary);
+  color: var(--text);
+  font-family: "BlackMild", "DenibasSunset", cursive;
+  overflow-x: hidden;
+}
+
+/* Update text styles */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+a,
+button,
+input,
+textarea {
+  color: var(--text);
+  font-family: "BlackMild", "DenibasSunset", cursive;
+}
+
+/* Navigation */
+.main-nav {
+  background: rgba(70, 0, 0, 0.9);
+}
+
+.nav-links a,
+.instagram-link,
+.skip-btn,
+.registration-form button,
+.footer a,
+.download-btn {
+  font-family: "BlackMild", "DenibasSunset", cursive;
+}
+
+/* Button and interactive elements */
+button,
+.download-btn,
+.skip-btn {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+button:hover,
+.download-btn:hover,
+.skip-btn:hover {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+/* Loader */
+.loader {
+  background: var(--primary);
+  color: var(--text);
+}
+
+/* Registration Form */
+.registration-form input,
+.registration-form textarea {
+  border: 2px solid var(--secondary);
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+.registration-form button {
+  background: var(--secondary);
+  color: var(--primary);
+}
+
+/* Footer */
+.footer {
+  background: #111;
+  color: var(--text);
+}
+
+.footer a:hover {
+  color: var(--accent);
+}
+
+/* Modal */
+.modal-content {
+  background: #1a1a1a;
+  border: 2px solid var(--secondary);
+  color: var(--text);
+}
+
+.close-modal:hover {
+  color: var(--accent);
+}
+
+/* Download Button */
+.download-btn:hover {
+  background: var(--accent);
+}
+
+body {
+  background: var(--primary);
+  color: var(--text);
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts as primary */
+  overflow-x: hidden;
+}
+
+/* Loader */
+.loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  transition: opacity 1s;
+}
+
+.loading-text {
+  text-align: center;
+  font-family: "BlackMild", "DenibasSunset", "Orbitron", sans-serif; /* Use custom fonts */
+  color: var(--text);
+  font-size: 2.5rem;
+  line-height: 1.5;
+  margin-bottom: 2rem;
+}
+
+.loader-bar {
+  width: 300px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.loader-progress {
+  height: 100%;
+  background: linear-gradient(90deg, #ff6b6b, #ffd93d);
+  width: 0;
+  transition: width 0.3s;
+}
+
+/* Video Splash */
+.video-splash {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999;
+  display: none;
+}
+
+#intro-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.skip-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  padding: 10px 25px;
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid var(--secondary);
+  color: white;
+  cursor: pointer;
+  font-family: "BlackMild", "DenibasSunset", "Orbitron", sans-serif; /* Use custom fonts */
+  transition: all 0.3s;
+}
+
+.skip-btn:hover {
+  background: var(--secondary);
+  color: #000;
+}
+
+.main-content {
+  display: none;
+}
+
+/* Navigation */
+.main-nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding: 1.5rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(70, 0, 0, 0.9); /* Maroon with transparency */
+  backdrop-filter: blur(10px);
+  z-index: 1000;
+}
+
+.nav-logo {
+  font-size: 1.5rem;
+  color: var(--secondary);
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+  transform: translateY(-2px);
+}
+
+/* Instagram Link Styling */
+.instagram-link {
+  color: var(--text);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: all 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.instagram-link:hover {
+  color: #e1306c; /* Instagram brand color */
+  transform: translateY(-2px);
+}
+
+.instagram-link svg {
+  fill: var(--text);
+}
+
+.instagram-link:hover svg {
+  fill: var(--accent);
+}
+
+#login-btn {
+    padding: 10px 12px;
+    background: var(--secondary);
+    border: 0;
+    border-radius: 4px;
+    color: var(--primary);
+    cursor: pointer;
+    transition: 200ms ease;
+}
+
+#login-btn:hover {
+    background: var(--accent);
+}
+
+/* Hero Section */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 80px;
+  overflow-y: hidden;
+  position: relative;
+  background: linear-gradient(45deg, rgba(70, 0, 0, 0.9), rgba(45, 45, 45, 0.9)),
+    url("images/hero-bg.jpg") center/cover;
+}
+.date {
+  margin-top: 40px; /* Increased space between countdown and message */
+  font-size: 1.9rem;
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.main-title {
+  font-size: 6rem;
+  color: var(--secondary);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  white-space: nowrap;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.countdown {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  z-index: 1;
+}
+
+.countdown-item {
+  text-align: center;
+}
+
+.countdown-item span:first-child {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+.registration-info {
+  margin-top: 40px; /* Increased space between countdown and message */
+  font-size: 1.2rem;
+  color: #f0f0f0;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 12px 24px;
+  border-radius: 8px;
+  text-align: center;
+  animation: fadeIn 2s ease-in-out;
+  z-index: 1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* About Section */
+.about {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--primary);
+  color: var(--secondary);
+  padding: 0 5%;
+  position: relative;
+}
+
+.about-content {
+  max-width: 800px;
+  text-align: center;
+  z-index: 2;
+}
+
+.about-content h2 {
+  font-size: 4rem;
+  color: var(--secondary);
+  margin-bottom: 2rem;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.about-content p {
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: #ff00d9;
+  font-family: "Times New Roman", Times, serif;
+}
+
+/* Footfall Section */
+.footfall {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    45deg,
+    rgba(70, 0, 0, 0.9),
+    rgba(45, 45, 45, 0.9)
+  );
+  color: var(--text);
+  text-align: center;
+  position: relative;
+}
+
+.footfall-content h2 {
+  font-size: 4rem;
+  color: var(--secondary);
+  margin-bottom: 1rem;
+  animation: fadeIn 2s ease-in-out;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.footfall-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--text);
+  animation: slideUp 1.5s ease-in-out;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+.footfall-text .year {
+  color: var(--accent);
+  animation: pulse 2s infinite;
+}
+
+.footfall-text .count {
+  color: var(--secondary);
+  animation: pulse 2s infinite;
+}
+
+/* Events Section */
+.events {
+  padding: 5rem 5%;
+  background: var(--primary);
+}
+
+.events h2 {
+  font-size: 3rem;
+  color: var(--secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.event-card {
+  background: rgba(59, 188, 232, 0.1);
+  padding: 2rem;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.event-card::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 217, 61, 0.2),
+    transparent
+  );
+  transform: rotate(45deg);
+  transition: 0.5s;
+  opacity: 0;
+}
+
+.event-card:hover::before {
+  opacity: 1;
+  top: 0;
+  left: 0;
+}
+
+.event-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(255, 217, 61, 0.2);
+}
+
+.event-name {
+  font-size: 1.7rem;
+  color: #7800e8fc;
+  margin-bottom: 1rem;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.event-desc {
+  font-size: 1.3rem;
+  color: var(--text);
+  opacity: 0.9;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+/* Gallery Section */
+.gallery {
+  padding: 5rem 5%;
+  background: linear-gradient(
+    45deg,
+    rgba(70, 0, 0, 0.9),
+    rgba(45, 45, 45, 0.9)
+  );
+}
+
+.gallery h2 {
+  font-size: 3rem;
+  color: var(--secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  border-radius: 10px;
+  aspect-ratio: 1 / 1;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.1);
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gallery-item:hover .overlay {
+  opacity: 1;
+}
+
+.overlay p {
+  font-size: 1.5rem;
+  color: var(--text);
+  text-align: center;
+  font-family: "BlackMild", "DenibasSunset", "Orbitron", sans-serif; /* Use custom fonts */
+}
+
+/* Sponsors Section */
+.sponsors {
+  padding: 5rem 5%;
+  background: var(--primary);
+  text-align: center;
+}
+
+.sponsors h2 {
+  font-size: 3rem;
+  color: var(--secondary);
+  margin-bottom: 2rem;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  justify-items: center;
+  align-items: center;
+}
+
+.sponsor-item {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  border-radius: 10px;
+  backdrop-filter: blur(10px);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.sponsor-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 10px 20px rgba(255, 217, 61, 0.2);
+}
+
+.sponsor-item img {
+  width: 100%;
+  height: auto;
+  max-width: 150px;
+  filter: grayscale(100%);
+  transition: filter 0.3s;
+}
+
+.sponsor-item:hover img {
+  filter: grayscale(0%);
+}
+
+/* Registration Section */
+.registration-note {
+  margin-bottom: 20px;
+  padding: 12px 20px;
+  background-color: #1e1e1e80;
+  color: #ffc108;
+  border: 1px solid #ffeeba;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.registration {
+  padding: 5rem 5%;
+  background: linear-gradient(
+    45deg,
+    rgba(70, 0, 0, 0.9),
+    rgba(45, 45, 45, 0.9)
+  );
+  text-align: center;
+}
+
+.registration h2 {
+  font-size: 3rem;
+  color: var(--secondary);
+  margin-bottom: 2rem;
+  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+}
+
+.registration-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.registration-form input,
+.registration-form textarea {
+  padding: 0.75rem;
+  border: 2px solid var(--secondary);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+  font-family: "BlackMild", "DenibasSunset", "Orbitron", sans-serif; /* Use custom fonts */
+}
+
+.registration-form input::placeholder,
+.registration-form textarea::placeholder {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.registration-form button {
+  padding: 0.75rem;
+  background: var(--secondary);
+  color: var(--primary);
+  border: none;
+  border-radius: 5px;
+  font-family: "BlackMild", "DenibasSunset", "Orbitron", sans-serif; /* Use custom fonts */
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.registration-form button:hover {
+  background: var(--accent);
+}
+
+/* Footer */
+.footer {
+  padding: 2rem 5%;
+  background: #111;
+  text-align: center;
+  color: var(--text);
+  font-family: "BlackMild", "DenibasSunset", "Orbitron", sans-serif; /* Use custom fonts */
+}
+
+.footer-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer a {
+  color: var(--secondary);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.footer a:hover {
+  color: #e1306c;
+}
+
+/* Modal Styles */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #1a1a1a;
+  margin: 10% auto;
+  padding: 20px;
+  border: 2px solid var(--secondary);
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  color: var(--text);
+}
+
+.close-modal {
+  color: var(--secondary);
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close-modal:hover {
+  color: var(--accent);
+}
+
+#login-form,
+#signup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#login-form input,
+#signup-form input {
+  padding: 10px;
+  border: 2px solid var(--secondary);
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--text);
+}
+
+#login-form button,
+#signup-form button {
+  padding: 10px;
+  background: var(--secondary);
+  color: var(--primary);
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#login-form button:hover,
+#signup-form button:hover {
+  background: var(--accent);
+}
+
+#switch-to-signup,
+#switch-to-login {
+  color: var(--secondary);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+#switch-to-signup:hover,
+#switch-to-login:hover {
+  color: var(--accent);
+}
+
+/* Style the download button */
+.download-btn {
+  padding: 10px 20px;
+  background-color: var(--secondary);
+  color: var(--primary);
+  border: none;
+  border-radius: 5px;
+  font-family: "BlackMild", "DenibasSunset", "Orbitron", sans-serif; /* Use customfonts */
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.download-btn:hover {
+  background-color: var(--accent);
+}
+
+/* illustrations */
+.chariot_wheel {
+  position: absolute;
+  bottom: -180px;
+  left: -180px;
+  width: 450px;
+  animation: rotate_wheel 60s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(72, 15, 15, 0.5)) contrast(1.2) opacity(0.8);
+}
+
+/* rotate wheel */
+@keyframes rotate_wheel {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.sitar {
+  position: absolute;
+  bottom: -100px;
+  right: -100px;
+  width: 400px;
+  animation: rotate_sitar 60s linear infinite;
+  filter: drop-shadow(0 0 10px rgba(72, 15, 15, 0.5)) contrast(1.2);
+  z-index: 1;
+}
+
+.crowd {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: auto;
+  z-index: -1;
+  filter: sepia(0.5) saturate(1.5) hue-rotate(10deg) brightness(0.5);
+}
