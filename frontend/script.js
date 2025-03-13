@@ -5,7 +5,7 @@ const loginBtn = document.getElementById('login-btn');
 // Function to check if the user is logged in
 async function checkLogin() {
     try {
-        const response = await fetch('http://localhost:3000/user', {
+        const response = await fetch(`${location.origin}/user`, {
             credentials: 'include',
         });
         const user = await response.json();
@@ -18,7 +18,7 @@ async function checkLogin() {
 
 // Redirect to Google OAuth login
 loginBtn.addEventListener('click', () => {
-    window.location.href = 'http://localhost:3000/auth/google';
+    window.location.href = `${location.origin}/auth/google`;
 });
 
 // Modify the form submission to check if the user is logged in
@@ -32,7 +32,7 @@ document.querySelector('.registration-form').addEventListener('submit', async (e
     }
 
     // Fetch the authenticated user's information
-    const userResponse = await fetch('http://localhost:3000/user', {
+    const userResponse = await fetch(`${location.origin}/user`, {
         credentials: 'include',
     });
     const user = await userResponse.json();
@@ -46,7 +46,7 @@ document.querySelector('.registration-form').addEventListener('submit', async (e
     formData.append('googleId', user.googleId); // Add the googleId to the form data
 
     try {
-        const response = await fetch('http://localhost:3000/submit', {
+        const response = await fetch(`${location.origin}/submit`, {
             method: 'POST',
             body: formData,
             credentials: 'include',
@@ -253,7 +253,7 @@ document.getElementById('signup').addEventListener('submit', async (e) => {
 // Function to check and display logged-in user info
 async function checkUser() {
     try {
-        const response = await fetch('http://localhost:3000/user', {
+        const response = await fetch(`${location.origin}/user`, {
             credentials: 'include',
         });
         const user = await response.json();
@@ -261,7 +261,7 @@ async function checkUser() {
         if (user && user.username) {
             document.getElementById('user-info').innerHTML = `
                 <p>Welcome, ${user.username}</p>
-                <a href="http://localhost:3000/logout">Logout</a>
+                <a href="${location.origin}/logout">Logout</a>
             `;
         } else {
             document.getElementById('user-info').innerHTML = `
@@ -275,7 +275,7 @@ async function checkUser() {
 
 // Function to trigger the download
 function downloadExcel() {
-    window.location.href = 'http://localhost:3000/download';
+    window.location.href = `${location.origin}/download`;
 }
 
 checkUser(); // Call the function when the page loads
