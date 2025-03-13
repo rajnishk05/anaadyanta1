@@ -179,7 +179,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Set the absolute path to your static files directory
-const publicPath = path.join('C:', 'Users', 'rajnish', 'VSCODE', '3');
+const publicPath = path.join(__dirname, 'frontend');
 app.use(express.static(publicPath));
 
 // Serve index.html for the root route
