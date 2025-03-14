@@ -58,7 +58,7 @@ document.querySelector('.registration-form').addEventListener('submit', async (e
             // Display the unique code in a pop-up
             Swal.fire({
                 title: 'Submission Successful!',
-                html: `<p>Your unique code is: <strong>${result.uniqueCode}</strong></p>
+                html: `<p>Your unique code is: <span class="normal-font">${result.uniqueCode}</span></p>
                        <p>Take a screenshot of this for entry.</p>`,
                 confirmButtonText: 'OK',
             });
@@ -259,14 +259,8 @@ async function checkUser() {
         const user = await response.json();
         
         if (user && user.username) {
-            document.getElementById('user-info').innerHTML = `
-                <p>Welcome, ${user.username}</p>
-                <a href="${location.origin}/logout">Logout</a>
-            `;
-        } else {
-            document.getElementById('user-info').innerHTML = `
-                <p>Not logged in.</p>
-            `;
+            document.getElementById("logged-user").textContent = user.username
+            document.getElementById('login-btn').style.display = "none"
         }
     } catch (err) {
         console.error('Error fetching user info:', err);
