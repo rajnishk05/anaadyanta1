@@ -28,6 +28,10 @@
   color: var(--text);
 }
 
+.normal-font {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
 body {
   background: var(--primary);
   overflow-x: hidden;
@@ -918,4 +922,9 @@ body {
   height: auto;
   z-index: -1;
   filter: sepia(0.5) saturate(1.5) hue-rotate(10deg) brightness(0.5);
+}
+
+
+.credits {
+  font-family: 0.9rem;
 }
