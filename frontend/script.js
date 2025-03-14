@@ -1,5 +1,6 @@
 // Add this at the top of script.js
 const loginBtn = document.getElementById('login-btn');
+const logoutBtn = document.getElementById('logout-btn');
 
 
 // Function to check if the user is logged in
@@ -19,6 +20,25 @@ async function checkLogin() {
 // Redirect to Google OAuth login
 loginBtn.addEventListener('click', () => {
     window.location.href = `${location.origin}/auth/google`;
+});
+
+// Logout the user
+logoutBtn.addEventListener('click', async () => {
+    try {
+        const response = await fetch(`${location.origin}/logout`, {
+            credentials: 'include',
+        });
+
+        if (response.ok) {
+            alert('Logged out successfully!');
+            window.location.reload();
+        } else {
+            alert('Logout failed. Please try again.');
+        }
+    } catch (err) {
+        console.error('Error logging out:', err);
+        alert('Logout failed. Please try again.');
+    }
 });
 
 // Modify the form submission to check if the user is logged in
@@ -259,8 +279,12 @@ async function checkUser() {
         const user = await response.json();
         
         if (user && user.username) {
-            document.getElementById("logged-user").textContent = user.username
-            document.getElementById('login-btn').style.display = "none"
+            loginBtn.style.display = "none";
+            logoutBtn.style.display = "block"
+        }
+        else {
+            loginBtn.style.display = 'block';
+            logoutBtn.style.display = "none"
         }
     } catch (err) {
         console.error('Error fetching user info:', err);

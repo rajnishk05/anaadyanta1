@@ -347,7 +347,7 @@ body {
   fill: var(--accent);
 }
 
-#login-btn {
+.nav-btn {
     padding: 10px 12px;
     background: var(--secondary);
     border: 0;
@@ -357,7 +357,11 @@ body {
     transition: 200ms ease;
 }
 
-#login-btn:hover {
+#logout-btn {
+  display: none;
+}
+
+.nav-btn:hover {
     background: var(--accent);
 }
 
