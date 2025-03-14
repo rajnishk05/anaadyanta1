@@ -273,3 +273,10 @@ function downloadExcel() {
 }
 
 checkUser(); // Call the function when the page loads
+// Toggle mobile navigation
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('nav-links');
+
+hamburger.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+});
