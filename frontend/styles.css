@@ -449,6 +449,7 @@ body {
 
 /* About Section */
 .about {
+  overflow-x: hidden;
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -481,6 +482,7 @@ body {
 
 /* Footfall Section */
 .footfall {
+  overflow-x: hidden;
   height: 100vh;
   display: flex;
   justify-content: center;
