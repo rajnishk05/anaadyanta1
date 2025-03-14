@@ -1,6 +1,6 @@
 // Add this at the top of script.js
-const loginBtn = document.getElementById('login-btn');
-const logoutBtn = document.getElementById('logout-btn');
+const loginBtns = document.querySelectorAll('.login-btn');
+const logoutBtns = document.querySelectorAll('.logout-btn');
 
 
 // Function to check if the user is logged in
@@ -18,12 +18,21 @@ async function checkLogin() {
 }
 
 // Redirect to Google OAuth login
-loginBtn.addEventListener('click', () => {
-    window.location.href = `${location.origin}/auth/google`;
-});
+// loginBtn.addEventListener('click', () => {
+//     window.location.href = `${location.origin}/auth/google`;
+// });
 
-// Logout the user
-logoutBtn.addEventListener('click', async () => {
+function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.style.display = sidebar.style.display === 'flex' ? 'none' : 'flex';
+    document.getElementById("menu-btn").style.display = sidebar.style.display === 'flex' ? 'none' : 'block';
+}
+
+function login() {
+    window.location.href = `${location.origin}/auth/google`;
+}
+
+async function logout() {
     try {
         const response = await fetch(`${location.origin}/logout`, {
             credentials: 'include',
@@ -39,7 +48,7 @@ logoutBtn.addEventListener('click', async () => {
         console.error('Error logging out:', err);
         alert('Logout failed. Please try again.');
     }
-});
+}
 
 // Modify the form submission to check if the user is logged in
 document.querySelector('.registration-form').addEventListener('submit', async (e) => {
@@ -97,9 +106,9 @@ document.querySelector('.registration-form').addEventListener('submit', async (e
 let progress = 0;
 const loader = document.querySelector('.loader');
 const loaderProgress = document.querySelector('.loader-progress');
-const videoSplash = document.querySelector('.video-splash');
-const introVideo = document.getElementById('intro-video');
-const skipBtn = document.querySelector('.skip-btn');
+// const videoSplash = document.querySelector('.video-splash');
+// const introVideo = document.getElementById('intro-video');
+// const skipBtn = document.querySelector('.skip-btn');
 const mainContent = document.querySelector('.main-content');
 
 // Smooth scrolling for navigation links
@@ -128,23 +137,22 @@ const loadInterval = setInterval(() => {
         loader.style.opacity = '0';
         setTimeout(() => {
             loader.remove();
-            videoSplash.style.display = 'block';
-            introVideo.play();
+            mainContent.style.display = 'block';
         }, 1000);
     }
 }, 30);
 
 // Skip button functionality
-skipBtn.addEventListener('click', () => {
-    videoSplash.style.display = 'none';
-    mainContent.style.display = 'block';
-});
+// skipBtn.addEventListener('click', () => {
+//     videoSplash.style.display = 'none';
+//     mainContent.style.display = 'block';
+// });
 
 // Automatically hide video after it ends
-introVideo.addEventListener('ended', () => {
-    videoSplash.style.display = 'none';
-    mainContent.style.display = 'block';
-});
+// introVideo.addEventListener('ended', () => {
+//     videoSplash.style.display = 'none';
+//     mainContent.style.display = 'block';
+// });
 
 // Countdown Timer
 const eventDate = new Date('2025-04-03').getTime();
@@ -187,88 +195,88 @@ galleryItems.forEach(item => {
 });
 
 // Login/Signup Modal
-const authModal = document.getElementById('auth-modal');
-const loginForm = document.getElementById('login-form');
-const signupForm = document.getElementById('signup-form');
-const switchToSignup = document.getElementById('switch-to-signup');
-const switchToLogin = document.getElementById('switch-to-login');
-const closeModal = document.querySelector('.close-modal');
+// const authModal = document.getElementById('auth-modal');
+// const loginForm = document.getElementById('login-form');
+// const signupForm = document.getElementById('signup-form');
+// const switchToSignup = document.getElementById('switch-to-signup');
+// const switchToLogin = document.getElementById('switch-to-login');
+// const closeModal = document.querySelector('.close-modal');
 
 // Open modal when login/signup buttons are clicked
-document.getElementById('login-btn').addEventListener('click', () => {
-    authModal.style.display = 'block';
-    loginForm.style.display = 'block';
-    signupForm.style.display = 'none';
-});
+// document.getElementById('login-btn').addEventListener('click', () => {
+//     authModal.style.display = 'block';
+//     loginForm.style.display = 'block';
+//     signupForm.style.display = 'none';
+// });
 
-document.getElementById('signup-btn').addEventListener('click', () => {
-    authModal.style.display = 'block';
-    loginForm.style.display = 'none';
-    signupForm.style.display = 'block';
-});
+// document.getElementById('signup-btn').addEventListener('click', () => {
+//     authModal.style.display = 'block';
+//     loginForm.style.display = 'none';
+//     signupForm.style.display = 'block';
+// });
 
 // Switch between login and signup forms
-switchToSignup.addEventListener('click', () => {
-    loginForm.style.display = 'none';
-    signupForm.style.display = 'block';
-});
+// switchToSignup.addEventListener('click', () => {
+//     loginForm.style.display = 'none';
+//     signupForm.style.display = 'block';
+// });
 
-switchToLogin.addEventListener('click', () => {
-    loginForm.style.display = 'block';
-    signupForm.style.display = 'none';
-});
+// switchToLogin.addEventListener('click', () => {
+//     loginForm.style.display = 'block';
+//     signupForm.style.display = 'none';
+// });
 
 // Close modal when the close button is clicked
-closeModal.addEventListener('click', () => {
-    authModal.style.display = 'none';
-});
+// closeModal.addEventListener('click', () => {
+//     authModal.style.display = 'none';
+// });
 
 // Close modal when clicking outside the modal
-window.addEventListener('click', (event) => {
-    if (event.target === authModal) {
-        authModal.style.display = 'none';
-    }
-});
+// window.addEventListener('click', (event) => {
+//     if (event.target === authModal) {
+//         authModal.style.display = 'none';
+//     }
+// });
 
 // Handle login form submission
-document.getElementById('login').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('login-username').value;
-    const password = document.getElementById('login-password').value;
+// document.getElementById('login').addEventListener('submit', async (e) => {
+//     e.preventDefault();
+//     const username = document.getElementById('login-username').value;
+//     const password = document.getElementById('login-password').value;
 
-    const response = await fetch('/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-    });
+//     const response = await fetch('/login', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ username, password }),
+//     });
 
-    if (response.ok) {
-        alert('Logged in successfully!');
-        authModal.style.display = 'none';
-    } else {
-        alert('Login failed. Please check your credentials.');
-    }
-});
+//     if (response.ok) {
+//         alert('Logged in successfully!');
+//         authModal.style.display = 'none';
+//     } else {
+//         alert('Login failed. Please check your credentials.');
+//     }
+// });
 
 // Handle signup form submission
-document.getElementById('signup').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const username = document.getElementById('signup-username').value;
-    const password = document.getElementById('signup-password').value;
+// document.getElementById('signup').addEventListener('submit', async (e) => {
+//     e.preventDefault();
+//     const username = document.getElementById('signup-username').value;
+//     const password = document.getElementById('signup-password').value;
 
-    const response = await fetch('/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, password }),
-    });
+//     const response = await fetch('/signup', {
+//         method: 'POST',
+//         headers: { 'Content-Type': 'application/json' },
+//         body: JSON.stringify({ username, password }),
+//     });
 
-    if (response.ok) {
-        alert('User created successfully!');
-        authModal.style.display = 'none';
-    } else {
-        alert('Signup failed. Please try again.');
-    }
-});
+//     if (response.ok) {
+//         alert('User created successfully!');
+//         authModal.style.display = 'none';
+//     } else {
+//         alert('Signup failed. Please try again.');
+//     }
+// });
 
 // Function to check and display logged-in user info
 async function checkUser() {
@@ -279,12 +287,20 @@ async function checkUser() {
         const user = await response.json();
         
         if (user && user.username) {
-            loginBtn.style.display = "none";
-            logoutBtn.style.display = "block"
+            loginBtns.forEach(b => {
+                b.style.display = 'none';
+            })
+            logoutBtns.forEach(b => {
+                b.style.display = 'block';
+            })
         }
         else {
-            loginBtn.style.display = 'block';
-            logoutBtn.style.display = "none"
+            loginBtns.forEach(b => {
+                b.style.display = 'block';
+            })
+            logoutBtns.forEach(b => {
+                b.style.display = 'none';
+            })
         }
     } catch (err) {
         console.error('Error fetching user info:', err);

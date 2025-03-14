@@ -298,9 +298,15 @@ body {
 }
 
 .nav-logo {
-  font-size: 1.5rem;
-  color: var(--secondary);
-  font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
+  height: 32px;
+  margin-bottom: -4px;
+}
+
+.hero-image {
+  width: clamp(300px, 70%, 1000px);
+  margin: 0 auto;
+  display: block;
+  padding-top: 40px;
 }
 
 .nav-links {
@@ -348,26 +354,26 @@ body {
 }
 
 .nav-btn {
-    padding: 10px 12px;
-    background: var(--secondary);
-    border: 0;
-    border-radius: 4px;
-    color: var(--primary);
-    cursor: pointer;
-    transition: 200ms ease;
+  padding: 10px 12px;
+  background: var(--secondary);
+  border: 0;
+  border-radius: 4px;
+  color: var(--primary);
+  cursor: pointer;
+  transition: 200ms ease;
 }
 
-#logout-btn {
+.logout-btn {
   display: none;
 }
 
 .nav-btn:hover {
-    background: var(--accent);
+  background: var(--accent);
 }
 
 /* Hero Section */
 .hero {
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -415,10 +421,11 @@ body {
   font-family: "BlackMild", "DenibasSunset", "Press Start 2P", cursive; /* Use custom fonts */
 }
 .registration-info {
+  margin: 10px;
   margin-top: 40px; /* Increased space between countdown and message */
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   color: #f0f0f0;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(75, 11, 11, 0.3);
   padding: 12px 24px;
   border-radius: 8px;
   text-align: center;
@@ -928,7 +935,163 @@ body {
   filter: sepia(0.5) saturate(1.5) hue-rotate(10deg) brightness(0.5);
 }
 
-
 .credits {
   font-family: 0.9rem;
+}
+
+/* Sidebar styles */
+.sidebar {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 250px;
+    height: 100%;
+    background: rgba(70, 0, 0, 0.9);
+    padding: 2rem;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.sidebar a {
+    color: var(--text);
+    text-decoration: none;
+    font-size: 1.5rem;
+    transition: color 0.3s;
+}
+
+.sidebar a:hover {
+    color: var(--accent);
+}
+
+.close-btn {
+    font-size: 2rem;
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    align-self: flex-end;
+}
+
+.close-btn:hover{
+  background: none;
+}
+
+.close-btn:hover svg{
+  stroke: var(--accent);
+}
+#menu-btn {
+    display: none;
+    appearance: none;
+    border: 0;
+    background: none;
+    color: var(--text);
+    cursor: pointer;
+}
+
+#menu-btn:hover svg{
+    stroke: var(--accent);
+}
+
+/* Add media queries for responsiveness */
+
+/* General styles for smaller screens */
+@media (max-width: 768px) {
+  #menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+    }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .hero {
+    padding-top: 60px;
+    text-align: center;
+  }
+
+  .main-title {
+    font-size: 2rem;
+  }
+
+  .countdown {
+    /* flex-direction: column; */
+    gap: 1rem;
+  }
+
+  .about-content h2,
+  .footfall-content h2,
+  .events h2,
+  .gallery h2,
+  .sponsors h2,
+  .registration h2 {
+    font-size: 2.5rem;
+  }
+
+  .about-content p,
+  .footfall-text,
+  .event-desc,
+  .registration-note {
+    font-size: 1.2rem;
+  }
+
+  .events-grid,
+  .gallery-grid,
+  .sponsors-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-card,
+  .gallery-item,
+  .sponsor-item {
+    margin-bottom: 1rem;
+  }
+
+  .registration-form {
+    width: 100%;
+    padding: 0 1rem;
+  }
+
+  .registration-form input,
+  .registration-form textarea,
+  .registration-form button {
+    width: 100%;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    margin-bottom: 8px;
+    font-size: 1rem;
+  }
+}
+
+/* Styles for very small screens */
+@media (max-width: 480px) {
+  .main-title {
+    font-size: 3rem;
+    text-overflow: inherit;
+    width: 100%;
+  }
+
+  .countdown-item span:first-child {
+    font-size: 1.5rem;
+  }
+
+  .about-content p,
+  .footfall-text,
+  .event-desc,
+  .registration-note {
+    font-size: 1rem;
+  }
 }
