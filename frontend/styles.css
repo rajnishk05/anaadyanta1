@@ -1080,21 +1080,22 @@ body {
 /* Team Section Styles */
 .team-section {
     padding: 60px;
-    background: var(--primary);
+    background: #f5f0e1; /* Ancient parchment background */
     text-align: center;
 }
 
 .team-section h2 {
     font-family: 'Georgia', serif;
     color: #8b5e3c;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
+    font-size: 28px;
 }
 
 .team-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     gap: 30px;
+    justify-content: center;
 }
 
 .team-card {
@@ -1102,8 +1103,7 @@ body {
     padding: 15px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 200px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .team-card:hover {
@@ -1130,10 +1130,13 @@ body {
     display: block;
 }
 
+/* Normal Font for Team Member Names */
 .team-card h3 {
     font-size: 18px;
     color: #8b5e3c;
     margin-top: 15px;
+    font-family: Arial, sans-serif; /* Default normal font */
+    font-weight: normal;
     transition: color 0.3s ease;
 }
 
@@ -1149,7 +1152,6 @@ body {
     opacity: 1;
     transform: translateY(0);
 }
-
 /* Styles for very small screens */
 @media (max-width: 480px) {
   .main-title {
