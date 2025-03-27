@@ -1080,7 +1080,7 @@ body {
 /* Team Section Styles */
 .team-section {
     padding: 60px;
-    background: #f5f0e1; /* Ancient parchment background */
+    background: var(--primary);
     text-align: center;
 }
 
