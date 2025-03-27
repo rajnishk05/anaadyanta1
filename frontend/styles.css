@@ -1080,7 +1080,7 @@ body {
 /* Team Section Styles */
 /* Ensure Full Page Background is Maroon */
 html, body {
-    background-color: maroon !important; /* Forces maroon background */
+    background-color: var(--primary) !important; /* Forces maroon background */
     color: yellow; /* Default text color */
     font-family: Arial, sans-serif;
     margin: 0;
