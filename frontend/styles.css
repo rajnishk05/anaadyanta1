@@ -1093,58 +1093,62 @@ body {
 
 .team-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 25px;
     justify-content: center;
 }
 
 .team-card {
     background: #fff8e7;
-    padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    width: 160px;
 }
 
 .team-card:hover {
-    transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    transform: scale(1.08);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
     background: #f5deb3;
 }
 
+/* Smaller Team Image */
 .team-image {
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid #d4af37;
-    padding: 5px;
+    border: 2px solid #d4af37;
+    padding: 4px;
+    width: 100px; /* Reduced image size */
+    height: 100px; /* Ensures circular proportion */
+    margin: 0 auto; /* Centering */
     transition: border 0.3s ease;
 }
 
 .team-card:hover .team-image {
-    border: 3px solid #ffd700;
+    border: 2px solid #ffd700;
 }
 
 .team-image img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
-/* Normal Font for Team Member Names */
 .team-card h3 {
-    font-size: 18px;
+    font-size: 16px;
     color: #8b5e3c;
-    margin-top: 15px;
-    font-family: Arial, sans-serif; /* Default normal font */
+    margin-top: 10px;
+    font-family: Arial, sans-serif;
     font-weight: normal;
-    transition: color 0.3s ease;
 }
 
 .team-card p {
-    font-size: 14px;
+    font-size: 12px;
     color: #5e4b32;
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
