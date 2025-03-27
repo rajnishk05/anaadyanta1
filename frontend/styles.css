@@ -1078,19 +1078,19 @@ body {
   }
 }
 /* Team Section Styles */
-/* Full Page Background */
-body {
-    background-color: maroon; /* Maroon background */
+/* Ensure Full Page Background is Maroon */
+html, body {
+    background-color: maroon !important; /* Forces maroon background */
     color: yellow; /* Default text color */
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    height: 100%; /* Ensures full coverage */
 }
 
-/* Team Section Styles */
+/* Team Section */
 .team-section {
     padding: 60px;
-  color: var(--primary);
     text-align: center;
 }
 
@@ -1102,31 +1102,31 @@ body {
     font-size: 28px;
 }
 
-/* Grid for 2 Members Only */
+/* Grid for 2 Members */
 .team-container {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Exactly 2 members per row */
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr); /* 2 members per row */
+    gap: 40px;
     justify-content: center;
-    max-width: 500px;
+    max-width: 600px; /* Slightly wider */
     margin: auto;
 }
 
-/* Team Card */
+/* Bigger Team Cards */
 .team-card {
     background: #800000; /* Darker maroon */
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: 0 3px 6px rgba(255, 255, 0, 0.3);
+    padding: 20px; /* Increased padding */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(255, 255, 0, 0.4);
     transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
     text-align: center;
-    width: 180px;
+    width: 220px; /* Increased width */
     color: yellow; /* Text inside card is yellow */
 }
 
 .team-card:hover {
     transform: scale(1.1);
-    box-shadow: 0 6px 12px rgba(255, 255, 0, 0.6);
+    box-shadow: 0 8px 16px rgba(255, 255, 0, 0.6);
     background: #990000; /* Slightly lighter maroon */
 }
 
@@ -1135,9 +1135,9 @@ body {
     border-radius: 50%;
     overflow: hidden;
     border: 2px solid yellow;
-    padding: 4px;
-    width: 100px;
-    height: 100px;
+    padding: 5px;
+    width: 120px; /* Increased size */
+    height: 120px;
     margin: 0 auto;
     transition: border 0.3s ease;
 }
@@ -1155,15 +1155,15 @@ body {
 
 /* Team Member Name - Bold & Yellow */
 .team-card h3 {
-    font-size: 16px;
-    color: yellow; /* Bold yellow name */
-    margin-top: 10px;
+    font-size: 18px; /* Slightly bigger */
+    color: yellow;
+    margin-top: 12px;
     font-weight: bold;
 }
 
 /* Role / Description - Normal Yellow */
 .team-card p {
-    font-size: 12px;
+    font-size: 14px;
     color: yellow;
     font-weight: normal;
     opacity: 0;
