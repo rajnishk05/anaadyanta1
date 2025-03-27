@@ -1078,70 +1078,95 @@ body {
   }
 }
 /* Team Section Styles */
+/* Full Page Background */
+body {
+    background-color: maroon; /* Maroon background */
+    color: yellow; /* Default text color */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+/* Team Section Styles */
 .team-section {
     padding: 60px;
-    background: #f5f0e1; /* Ancient parchment background */
     text-align: center;
 }
 
+/* Section Heading */
 .team-section h2 {
     font-family: 'Georgia', serif;
-    color: #8b5e3c;
-    margin-bottom: 30px;
+    color: yellow; /* Yellow heading */
+    margin-bottom: 40px;
+    font-size: 28px;
 }
 
+/* Grid for 2 Members Only */
 .team-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Exactly 2 members per row */
     gap: 30px;
+    justify-content: center;
+    max-width: 500px;
+    margin: auto;
 }
 
+/* Team Card */
 .team-card {
-    background: #fff8e7;
+    background: #800000; /* Darker maroon */
     padding: 15px;
-    border-radius: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    width: 200px;
+    border-radius: 12px;
+    box-shadow: 0 3px 6px rgba(255, 255, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    text-align: center;
+    width: 180px;
+    color: yellow; /* Text inside card is yellow */
 }
 
 .team-card:hover {
     transform: scale(1.1);
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-    background: #f5deb3;
+    box-shadow: 0 6px 12px rgba(255, 255, 0, 0.6);
+    background: #990000; /* Slightly lighter maroon */
 }
 
+/* Team Member Images */
 .team-image {
     border-radius: 50%;
     overflow: hidden;
-    border: 3px solid #d4af37;
-    padding: 5px;
+    border: 2px solid yellow;
+    padding: 4px;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto;
     transition: border 0.3s ease;
 }
 
 .team-card:hover .team-image {
-    border: 3px solid #ffd700;
+    border: 2px solid #ffd700; /* Gold border on hover */
 }
 
 .team-image img {
     width: 100%;
-    height: auto;
-    display: block;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
+/* Team Member Name - Bold & Yellow */
 .team-card h3 {
-    font-size: 18px;
-    color: #8b5e3c;
-    margin-top: 15px;
-    transition: color 0.3s ease;
+    font-size: 16px;
+    color: yellow; /* Bold yellow name */
+    margin-top: 10px;
+    font-weight: bold;
 }
 
+/* Role / Description - Normal Yellow */
 .team-card p {
-    font-size: 14px;
-    color: #5e4b32;
+    font-size: 12px;
+    color: yellow;
+    font-weight: normal;
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(8px);
     transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
