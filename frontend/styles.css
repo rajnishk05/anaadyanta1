@@ -1090,6 +1090,7 @@ body {
 /* Team Section Styles */
 .team-section {
     padding: 60px;
+  color: var(--primary);
     text-align: center;
 }
 
