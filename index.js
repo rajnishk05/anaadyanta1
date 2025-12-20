@@ -1,6 +1,6 @@
 // server.js
 require('dotenv').config();
-const mongoose = require('mongoose');
+const admin = require('firebase-admin'); // New: Firebase Admin SDK for Firestore
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
@@ -16,6 +16,14 @@ const credentials = require('./credentials.json'); // Add this line at the top o
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+// Initialize Firebase Admin with Firestore
+const serviceAccount = require('./credentials.json'); // Assuming this is your Firebase service account key (update if needed)
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  projectId: process.env.FIREBASE_PROJECT_ID || 'your-firebase-project-id' // Add to .env
+});
+const db = admin.firestore(); // Firestore instance
 
 // Set up OAuth2 client
 const oauth2Client = new google.auth.OAuth2(
@@ -150,18 +158,19 @@ app.use(passport.session());
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
     try {
-        const user = await User.findById(id);
-        done(null, user);
+        const userDoc = await db.collection('users').doc(id).get();
+        if (userDoc.exists) {
+            done(null, { id: userDoc.id, ...userDoc.data() });
+        } else {
+            done(null, false);
+        }
     } catch (err) {
         done(err);
     }
 });
 
-// MongoDB Connection
-const mongoURI = process.env.MONGO_URI;
-mongoose.connect(mongoURI)
-    .then(() => console.log('Connected to MongoDB Atlas'))
-    .catch(err => console.error('Error connecting to MongoDB Atlas:', err));
+// Firestore Connection (replaces MongoDB)
+console.log('Connected to Firestore');
 
 // Ensure uploads directory exists
 const uploadDir = path.join(__dirname, 'uploads');
@@ -191,15 +200,8 @@ app.use('/uploads', express.static(uploadDir)); // Serve uploaded files
 
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
 
-// Update User Schema to include Google ID if not already
-const userSchema = new mongoose.Schema({
-    googleId: { type: String, unique: true },
-    username: String,
-    email: String,
-    password: String, // Optional, for local strategy
-});
-
-const User = mongoose.model('User', userSchema);
+// Firestore-based User Collection (replaces Mongoose schema)
+const userCollection = db.collection('users');
 
 // Configure Google OAuth Strategy
 passport.use(new GoogleStrategy({
@@ -208,14 +210,18 @@ passport.use(new GoogleStrategy({
     callbackURL: process.env.GOOGLE_CALLBACK_URL, // Ensure this matches the redirect URI in Google Console
 }, async (accessToken, refreshToken, profile, done) => {
     try {
-        let user = await User.findOne({ googleId: profile.id });
-        if (!user) {
-            user = new User({
+        let userDoc = await userCollection.where('googleId', '==', profile.id).limit(1).get();
+        let user;
+        if (!userDoc.empty) {
+            user = { id: userDoc.docs[0].id, ...userDoc.docs[0].data() };
+        } else {
+            const newUser = {
                 googleId: profile.id,
                 username: profile.displayName,
                 email: profile.emails[0].value,
-            });
-            await user.save();
+            };
+            const docRef = await userCollection.add(newUser);
+            user = { id: docRef.id, ...newUser };
         }
         done(null, user);
     } catch (err) {
@@ -247,25 +253,16 @@ app.get('/logout', (req, res) => {
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Schemas
-const submissionSchema = new mongoose.Schema({
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    phone: { type: String, required: true },
-    college: { type: String, required: true },
-    submissionFile: { type: String, required: true },
-    googleId: { type: String, required: true, unique: true },
-    uniqueCode: { type: String, required: true }, // ✅ Ensure this line is included
-});
-
-const Submission = mongoose.model('Submission', submissionSchema);
+// Firestore-based Submission Collection (replaces Mongoose schema)
+const submissionCollection = db.collection('submissions');
 
 // Passport Strategies
 passport.use(new LocalStrategy(async (username, password, done) => {
     try {
-        const user = await User.findOne({ username });
-        if (!user) return done(null, false, { message: 'Incorrect username.' });
+        const userDoc = await userCollection.where('username', '==', username).limit(1).get();
+        if (userDoc.empty) return done(null, false, { message: 'Incorrect username.' });
         
+        const user = { id: userDoc.docs[0].id, ...userDoc.docs[0].data() };
         const isValid = await bcrypt.compare(password, user.password);
         if (!isValid) return done(null, false, { message: 'Incorrect password.' });
         
@@ -278,8 +275,12 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 passport.serializeUser((user, done) => done(null, user.id));
 passport.deserializeUser(async (id, done) => {
     try {
-        const user = await User.findById(id);
-        done(null, user);
+        const userDoc = await db.collection('users').doc(id).get();
+        if (userDoc.exists) {
+            done(null, { id: userDoc.id, ...userDoc.data() });
+        } else {
+            done(null, false);
+        }
     } catch (err) {
         done(err);
     }
@@ -331,7 +332,7 @@ app.post('/submit', upload.single('submission'), async (req, res) => {
             throw new Error('No more unique codes available.');
         }
 
-        const submission = new Submission({
+        const submission = {
             name,
             email,
             phone,
@@ -339,9 +340,9 @@ app.post('/submit', upload.single('submission'), async (req, res) => {
             submissionFile: driveLink, // Store the Google Drive link
             googleId,
             uniqueCode, // Store the unique code
-        });
+        };
 
-        await submission.save();
+        await submissionCollection.add(submission);
 
         // Append the new submission to the Excel file
         await appendToExcel(submission);
@@ -362,8 +363,8 @@ app.post('/signup', async (req, res) => {
     try {
         const { username, password } = req.body;
         const hashedPassword = await bcrypt.hash(password, 10);
-        const user = new User({ username, password: hashedPassword });
-        await user.save();
+        const user = { username, password: hashedPassword };
+        await userCollection.add(user);
         res.json({ message: 'User created' });
     } catch (err) {
         res.status(400).json({ error: err.message });
